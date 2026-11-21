@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aiveloc — AI-powered apps. Human expertise.</title>
+<meta name="description" content="An independent iOS app studio. We pair cutting-edge AI with human judgment to ship refined apps — fast. Communally and GradeWave are live, each with 5,000+ users.">
+<meta name="theme-color" content="#0b0b0f">
+<meta property="og:title" content="Aiveloc — AI-powered apps. Human expertise.">
+<meta property="og:description" content="An independent iOS app studio. Communally and GradeWave are live, each with 5,000+ users.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0f;
+    --surface:rgba(255,255,255,.035);
+    --surface-2:rgba(255,255,255,.055);
+    --border:rgba(255,255,255,.09);
+    --border-2:rgba(255,255,255,.16);
+    --text:#ededf2;
+    --muted:#9b9bab;
+    --faint:#6a6a78;
+    --accent:#7c6cff;
+    --live:#34d399;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --serif:"Instrument Serif",Georgia,serif;
+    --max:1080px;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  ::selection{background:var(--accent);color:#fff}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  section{padding:96px 0;position:relative}
+  @media (max-width:700px){section{padding:64px 0}}
+
+  h1,h2,h3{font-weight:600;letter-spacing:-.02em;line-height:1.1}
+  .serif{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:0}
+  .eyebrow{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:500;padding:11px 20px;border-radius:999px;border:1px solid transparent;transition:transform .2s var(--ease),background .2s,border-color .2s,color .2s;cursor:pointer}
+  .btn-primary{background:var(--text);color:#000}
+  .btn-primary:hover{transform:translateY(-1px);background:#fff}
+  .btn-ghost{border-color:var(--border-2);color:var(--text)}
+  .btn-ghost:hover{background:var(--surface);transform:translateY(-1px)}
+  .arrow{transition:transform .2s var(--ease)}
+  .btn:hover .arrow,.app-link:hover .arrow{transform:translate(2px,-2px)}
+
+  /* nav */
+  header{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+  header.stuck{background:rgba(11,11,15,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--border)}
+  .nav{max-width:var(--max);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:17px;letter-spacing:-.01em}
+  .brand .glyph{width:20px;height:20px}
+  .nav-links{display:flex;gap:4px;align-items:center}
+  .nav-links a{font-size:14px;color:var(--muted);padding:8px 13px;border-radius:8px;transition:color .2s,background .2s}
+  .nav-links a:hover{color:var(--text);background:var(--surface)}
+  .nav .btn{padding:9px 16px}
+  @media (max-width:760px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* hero */
+  .hero{padding:168px 0 72px;text-align:center}
+  .hero .pill{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:7px 15px;border-radius:999px;margin-bottom:30px}
+  .hero .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--live);box-shadow:0 0 9px var(--live);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .hero h1{font-size:clamp(40px,7vw,72px);letter-spacing:-.035em;margin-bottom:24px}
+  .hero h1 .serif{display:block;color:var(--muted)}
+  .hero p.lede{color:var(--muted);font-size:clamp(17px,2vw,19px);max-width:46ch;margin:0 auto 36px}
+  .hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+  .stats{display:flex;justify-content:center;gap:0;flex-wrap:wrap;margin-top:72px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .stat{flex:1 1 0;min-width:140px;padding:28px 20px;text-align:center;border-left:1px solid var(--border)}
+  .stat:first-child{border-left:0}
+  .stat b{display:block;font-size:30px;font-weight:600;letter-spacing:-.02em}
+  .stat span{font-size:13px;color:var(--faint)}
+  @media (max-width:560px){.stat{flex-basis:50%;border-top:1px solid var(--border)}.stat:nth-child(-n+2){border-top:0}.stat:nth-child(odd){border-left:0}}
+
+  /* section head */
+  .shead{margin-bottom:44px}
+  .shead h2{font-size:clamp(26px,3.4vw,36px);margin-top:12px;letter-spacing:-.025em}
+  .shead p{color:var(--muted);margin-top:12px;max-width:52ch}
+
+  /* apps */
+  .apps{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media (max-width:760px){.apps{grid-template-columns:1fr}}
+  .app{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column;transition:transform .3s var(--ease),border-color .3s,background .3s}
+  .app:hover{transform:translateY(-3px);border-color:var(--border-2);background:var(--surface-2)}
+  .app.feature{grid-column:span 2}
+  @media (max-width:760px){.app.feature{grid-column:span 1}}
+  .app-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+  .app-id{display:flex;align-items:center;gap:13px}
+  .app-icon{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:#fff;overflow:hidden;flex:none}
+  .app-icon img{width:100%;height:100%;object-fit:cover}
+  .ic-green{background:linear-gradient(145deg,#3ddc84,#16a34a)}
+  .ic-blue{background:linear-gradient(145deg,#60a5fa,#4338ca)}
+  .ic-violet{background:linear-gradient(145deg,#a78bfa,#6d28d9)}
+  .ic-amber{background:linear-gradient(145deg,#fbbf24,#d97706)}
+  .app-id .nm{font-size:19px;font-weight:600;letter-spacing:-.01em}
+  .app-id .ct{font-size:12.5px;color:var(--faint)}
+  .badge{font-size:11px;font-weight:600;letter-spacing:.05em;padding:5px 10px;border-radius:999px;border:1px solid var(--border-2);color:var(--muted);white-space:nowrap}
+  .badge.live{color:#9af5c9;border-color:rgba(52,211,153,.35);background:rgba(52,211,153,.1)}
+  .app .tagline{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--text);margin-bottom:10px;letter-spacing:0}
+  .app .desc{color:var(--muted);font-size:14.5px;flex:1}
+  .app-foot{display:flex;align-items:center;justify-content:space-between;margin-top:22px;padding-top:18px;border-top:1px solid var(--border)}
+  .app-link{font-size:13.5px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
+  .app-link:hover{color:var(--accent)}
+  .app-users{font-size:12.5px;color:var(--faint);display:inline-flex;align-items:center;gap:6px}
+  .app-users .u{color:var(--live);font-weight:600}
+
+  /* approach */
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  @media (max-width:760px){.three{grid-template-columns:1fr;gap:32px}}
+  .three .num{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--accent)}
+  .three h3{font-size:18px;margin:14px 0 8px}
+  .three p{color:var(--muted);font-size:14.5px}
+
+  /* about */
+  .about{display:grid;grid-template-columns:1.3fr .7fr;gap:56px;align-items:start}
+  @media (max-width:760px){.about{grid-template-columns:1fr;gap:36px}}
+  .about-copy p{color:var(--muted);font-size:17px;margin-top:16px}
+  .about-copy p b{color:var(--text);font-weight:600}
+  .about-copy .big{font-size:clamp(22px,3vw,28px);color:var(--text);font-weight:500;letter-spacing:-.02em;line-height:1.3}
+  .about-copy .big .serif{color:var(--muted)}
+  .facts{border:1px solid var(--border);border-radius:16px;overflow:hidden}
+  .fact{padding:18px 20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .fact:first-child{border-top:0}
+  .fact .k{font-size:13px;color:var(--faint)}
+  .fact .v{font-size:14px;font-weight:600;text-align:right}
+  .fact .v a:hover{color:var(--accent)}
+
+  /* founder */
+  .chips{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media (max-width:860px){.chips{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:520px){.chips{grid-template-columns:1fr}}
+  .chip{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;transition:border-color .3s,transform .3s var(--ease)}
+  .chip:hover{border-color:var(--border-2);transform:translateY(-2px)}
+  .chip .tag{font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--accent);text-transform:uppercase}
+  .chip h4{font-size:16px;margin:10px 0 6px}
+  .chip p{font-size:13px;color:var(--muted);margin-bottom:14px}
+  .chip a{font-size:13px;font-weight:600;color:var(--text);display:inline-flex;gap:5px;align-items:center}
+  .chip a:hover{color:var(--accent)}
+
+  /* contact */
+  .contact{text-align:center;border:1px solid var(--border);border-radius:24px;background:radial-gradient(540px 280px at 50% 0%,rgba(124,108,255,.14),transparent 70%),var(--surface);padding:72px 24px}
+  .contact h2{font-size:clamp(28px,4.4vw,44px);letter-spacing:-.03em}
+  .contact h2 .serif{color:var(--muted)}
+  .contact p{color:var(--muted);margin:16px auto 32px;max-width:40ch}
+  .contact-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+  /* footer */
+  footer{border-top:1px solid var(--border);padding:40px 0}
+  .foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  .foot .l{display:flex;align-items:center;gap:9px;font-weight:600}
+  .foot .links{display:flex;gap:20px;flex-wrap:wrap}
+  .foot .links a{font-size:13.5px;color:var(--muted);transition:color .2s}
+  .foot .links a:hover{color:var(--text)}
+  .foot .cr{font-size:13px;color:var(--faint);width:100%}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <nav class="nav">
+    <a class="brand" href="#top">
+      <svg class="glyph" viewBox="0 0 24 24" fill="none"><path d="M12 2 22 20H15.5L12 13.5 8.5 20H2L12 2Z" fill="url(#bg)"/><defs><linearGradient id="bg" x1="2" y1="2" x2="22" y2="20"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#7c6cff"/></linearGradient></defs></svg>
+      Aiveloc
+    </a>
+    <div class="nav-links">
+      <a href="#apps">Apps</a>
+      <a href="#approach">Approach</a>
+      <a href="#about">About</a>
+      <a class="btn btn-ghost nav-cta" href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="pill reveal in"><span class="dot"></span>Two apps live · 10,000+ users</span>
+    <h1 class="reveal in">AI-powered apps.<span class="serif">Human expertise.</span></h1>
+    <p class="lede reveal in">Aiveloc is an independent iOS app studio. We pair cutting-edge AI with human judgment to ship refined, focused apps — fast.</p>
+    <div class="hero-ctas reveal in">
+      <a class="btn btn-primary" href="#apps">See the apps <span class="arrow">↓</span></a>
+      <a class="btn btn-ghost" href="mailto:admin@aiveloc.com">admin@aiveloc.com</a>
+    </div>
+
+    <div class="stats reveal in">
+      <div class="stat"><b>2</b><span>Apps live</span></div>
+      <div class="stat"><b>10K+</b><span>Users</span></div>
+      <div class="stat"><b>100%</b><span>Human-reviewed</span></div>
+      <div class="stat"><b>2025</b><span>Est.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPS -->
+<section id="apps">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">The shelf</span>
+      <h2>Apps we've shipped to the App Store</h2>
+      <p>Small, focused products — designed and refined by hand, accelerated by AI. Two are live and growing fast.</p>
+    </div>
+
+    <div class="apps">
+      <!-- Communally -->
+      <a class="app feature reveal" href="https://communallyapp.com" target="_blank" rel="noopener">
+        <div class="app-top">
+          <div class="app-id">
+            <div class="app-icon ic-green"><img src="assets/communally-icon.png" alt="" onerror="this.parentNode.textContent='C'"></div>
+            <div><div class="nm">Communally</div><div class="ct">Marketplace · Community</div></div>
+          </div>
+          <span class="badge live">● LIVE</span>
+        </div>
+        <div class="tagline">Your community is hiring.</div>
+        <p class="desc">The neighborhood marketplace for everyday work. Post a job, hire a verified teen near you, and pay safely through the app — escrow until it's done, local-first within 5 miles.</p>
+        <div class="app-foot">
+          <span class="app-link">communallyapp.com <span class="arrow">↗</span></span>
+          <span class="app-users"><span class="u">5,000+</span> users</span>
+        </div>
+      </a>
+
+      <!-- GradeWave -->
+      <a class="app feature reveal" href="https://gradewave.org" target="_blank" rel="noopener">
+        <div class="app-top">
+          <div class="app-id">
+            <div class="app-icon ic-blue">G</div>
+            <div><div class="nm">GradeWave</div><div class="ct">Education · Students</div></div>
+          </div>
+          <span class="badge live">● LIVE</span>
+        </div>
+        <div class="tagline">See your grades, actually.</div>
+        <p class="desc">A grade tracker built for how students actually think. Know exactly where you stand, what each assignment does to your average, and the score you need — clear, instant, and honest.</p>
+        <div class="app-foot">
+          <span class="app-link">gradewave.org <span class="arrow">↗</span></span>
+          <span class="app-users"><span class="u">5,000+</span> users</span>
+        </div>
+      </a>
+
+      <!-- DivinePrayers -->
+      <a class="app reveal" href="https://apps.apple.com/app/divineprayers" target="_blank" rel="noopener">
+        <div class="app-top">
+          <div class="app-id">
+            <div class="app-icon ic-violet">D</div>
+            <div><div class="nm">DivinePrayers</div><div class="ct">Spiritual · Education</div></div>
+          </div>
+          <span class="badge">iOS</span>
+        </div>
+        <p class="desc">Learn Hindu prayers, mantras, and devotional songs with interactive quizzes, daily verses, and bilingual audio — built to make a daily practice effortless.</p>
+        <div class="app-foot"><span class="app-link">App Store <span class="arrow">↗</span></span></div>
+      </a>
+
+      <!-- Hanuman Chalisa Kids -->
+      <a class="app reveal" href="https://apps.apple.com/app/hanuman-chalisa-kids" target="_blank" rel="noopener">
+        <div class="app-top">
+          <div class="app-id">
+            <div class="app-icon ic-amber">H</div>
+            <div><div class="nm">Hanuman Chalisa Kids</div><div class="ct">Education · Kids</div></div>
+          </div>
+          <span class="badge">iOS</span>
+        </div>
+        <p class="desc">A kid-friendly way to learn the Hanuman Chalisa — interactive learning, beautiful illustrations, and engaging content designed for young readers.</p>
+        <div class="app-foot"><span class="app-link">App Store <span class="arrow">↗</span></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">The craft</span>
+      <h2>A studio built around the <span class="serif">new craft</span> of app-making</h2>
+      <p>AI accelerates the work. Humans set the direction, taste, and bar for quality.</p>
+    </div>
+    <div class="three">
+      <div class="reveal"><span class="num">01</span><h3>AI-powered development</h3><p>Modern coding agents handle the boilerplate, scaffolding, and iteration. The grunt work disappears, so we move at the speed of ideas.</p></div>
+      <div class="reveal"><span class="num">02</span><h3>Human in the loop</h3><p>Every release goes through human review — design, UX, accessibility, copy. AI ships drafts; we ship products people keep on their home screen.</p></div>
+      <div class="reveal"><span class="num">03</span><h3>Best of both worlds</h3><p>AI velocity, human taste. Polished apps that ship in weeks, not quarters — without the rough edges of throw-it-together work.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap about">
+    <div class="about-copy reveal">
+      <span class="eyebrow">About</span>
+      <p class="big" style="margin-top:14px">A studio of one, <span class="serif">shipping deliberately.</span></p>
+      <p>Aiveloc is an independent iOS app studio founded and run by <b>Shaurya Grover</b>, who started the company in 8th grade. The bet: a small team using AI can punch above its weight — without losing the human taste that makes a product feel cared-for.</p>
+      <p>Every app on the shelf is shipped by hand. <b>Every screen, every interaction, every word</b> — reviewed by a real human before it goes out.</p>
+    </div>
+    <div class="facts reveal">
+      <div class="fact"><span class="k">Founded</span><span class="v">2025 · 8th grade</span></div>
+      <div class="fact"><span class="k">Based</span><span class="v">California</span></div>
+      <div class="fact"><span class="k">Apps live</span><span class="v">Communally · GradeWave</span></div>
+      <div class="fact"><span class="k">Users</span><span class="v">10,000+</span></div>
+      <div class="fact"><span class="k">Contact</span><span class="v"><a href="mailto:admin@aiveloc.com">admin@aiveloc.com</a></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">The founder</span>
+      <h2>More about <span class="serif">Shaurya</span></h2>
+      <p>Apps are one of several things he ships. A quick tour of the rest.</p>
+    </div>
+    <div class="chips">
+      <div class="chip reveal"><span class="tag">100K+ subs</span><h4>Music</h4><p>Producer (@Shaurgroovy) with an Apple Music–charting catalog; official producer for Sony.</p><a href="https://www.youtube.com/@Shaurgroovy" target="_blank" rel="noopener">YouTube ↗</a></div>
+      <div class="chip reveal"><span class="tag">Team 3134E</span><h4>Robotics</h4><p>VEX Robotics with Robolabs — Division Finalist at the 2026 CREATE Open US Tournament.</p><a href="https://www.robotevents.com/robot-competitions/vex-robotics-competition/RE-V5RC-25-0404.html#results-" target="_blank" rel="noopener">CREATE Open ↗</a></div>
+      <div class="chip reveal"><span class="tag">Top 3</span><h4>Recognition</h4><p>Top 3 of 10,000+ applicants to KQED Youth Media; drawing published in Celebrating Art.</p><a href="https://youthmedia.kqed.org/" target="_blank" rel="noopener">KQED ↗</a></div>
+      <div class="chip reveal"><span class="tag">Off-screen</span><h4>Also</h4><p>Piano (London School of Music, Level 3), JV tennis, and mentoring young creators.</p><a href="mailto:admin@aiveloc.com">Say hello ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <h2>Have an app you'd <span class="serif">like to ship?</span></h2>
+      <p>Tell us about your idea. We reply to every serious message.</p>
+      <div class="contact-ctas">
+        <a class="btn btn-primary" href="mailto:admin@aiveloc.com">admin@aiveloc.com →</a>
+        <a class="btn btn-ghost" href="https://instagram.com/aiveloc" target="_blank" rel="noopener">Instagram ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="l">
+      <svg class="glyph" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2 22 20H15.5L12 13.5 8.5 20H2L12 2Z" fill="url(#bg2)"/><defs><linearGradient id="bg2" x1="2" y1="2" x2="22" y2="20"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#7c6cff"/></linearGradient></defs></svg>
+      Aiveloc
+    </span>
+    <div class="links">
+      <a href="https://communallyapp.com" target="_blank" rel="noopener">Communally</a>
+      <a href="https://gradewave.org" target="_blank" rel="noopener">GradeWave</a>
+      <a href="https://instagram.com/aiveloc" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/@Shaurgroovy" target="_blank" rel="noopener">YouTube</a>
+      <a href="mailto:admin@aiveloc.com">Email</a>
+    </div>
+    <span class="cr">© 2026 Aiveloc LLC — AI-powered apps, human expertise. Built in California.</span>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('header');
+  addEventListener('scroll', () => header.classList.toggle('stuck', scrollY > 8), {passive:true});
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
